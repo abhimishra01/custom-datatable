@@ -10,11 +10,13 @@ import {
   TableContainer,
 } from "@chakra-ui/react";
 
-export default function DataTable() {
+import DataTableType from "./types";
+
+export default function DataTable({ caption }: DataTableType) {
   return (
     <TableContainer>
       <Table variant="simple">
-        <TableCaption>Imperial to metric conversion factors</TableCaption>
+        {caption && <TableCaption>{caption}</TableCaption>}
         <Thead>
           <Tr>
             <Th>To convert</Th>

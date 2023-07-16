@@ -12,5 +12,5 @@ export default meta;
 type Story = StoryObj<typeof DataTable>;
 
 export const Primary: Story = {
-  render: () => withChakraProvider(DataTable),
+  render: () => withChakraProvider(DataTable, { caption: "Primary Table" }),
 };
