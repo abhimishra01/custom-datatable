@@ -11,6 +11,8 @@ import {
   TableContainer,
 } from "@chakra-ui/react";
 
+import TableHead from "@/components/TableHead";
+
 import DataTableType from "./types";
 
 export default function DataTable({
@@ -33,9 +35,7 @@ export default function DataTable({
                 {headers.map((column) => {
                   const { isNumeric, id, label } = column;
                   return (
-                    <Th key={id} isNumeric={isNumeric}>
-                      {label}
-                    </Th>
+                    <TableHead key={id} isNumeric={isNumeric} label={label} />
                   );
                 })}
               </Tr>
