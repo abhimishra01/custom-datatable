@@ -10,9 +10,9 @@ import {
 
 import TableHead from "@/components/TableHead";
 import TableData from "@/components/TableData";
+import { Header, Row } from "@/utils/types";
 
 import DataTableType from "./types";
-import { Header, Row } from "@/utils/types";
 
 export default function DataTable({
   rows,
