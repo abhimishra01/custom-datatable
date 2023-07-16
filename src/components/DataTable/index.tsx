@@ -12,11 +12,13 @@ import {
 } from "@chakra-ui/react";
 
 import TableHead from "@/components/TableHead";
+import TableData from "@/components/TableData";
 
 import DataTableType from "./types";
+import { Header, Row } from "@/utils/types";
 
 export default function DataTable({
-  row,
+  rows,
   headers,
   caption,
   sortable,
@@ -32,7 +34,7 @@ export default function DataTable({
             {caption && <TableCaption>{caption}</TableCaption>}
             <Thead>
               <Tr>
-                {headers.map((column) => {
+                {headers.map((column: Header) => {
                   const { isNumeric, id, label } = column;
                   return (
                     <TableHead key={id} isNumeric={isNumeric} label={label} />
@@ -42,28 +44,14 @@ export default function DataTable({
             </Thead>
             <Tbody>
               <Tr>
-                <Td>inches</Td>
-                <Td>millimetres (mm)</Td>
-                <Td isNumeric>25.4</Td>
-              </Tr>
-              <Tr>
-                <Td>feet</Td>
-                <Td>centimetres (cm)</Td>
-                <Td isNumeric>30.48</Td>
-              </Tr>
-              <Tr>
-                <Td>yards</Td>
-                <Td>metres (m)</Td>
-                <Td isNumeric>0.91444</Td>
+                {rows.map((row: Row) => {
+                  const { isNumeric, id, label } = row;
+                  return (
+                    <TableData key={id} isNumeric={isNumeric} label={label} />
+                  );
+                })}
               </Tr>
             </Tbody>
-            <Tfoot>
-              <Tr>
-                <Th>To convert</Th>
-                <Th>into</Th>
-                <Th isNumeric>multiply by</Th>
-              </Tr>
-            </Tfoot>
           </>
         )}
       </Table>

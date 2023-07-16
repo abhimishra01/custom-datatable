@@ -20,6 +20,22 @@ const columns = [
   },
 ];
 
+const rows = [
+  {
+    id: 1,
+    label: "To convert",
+  },
+  {
+    id: 2,
+    label: "into",
+  },
+  {
+    id: 2,
+    label: "Centimeters",
+    isNumeric: true,
+  },
+];
+
 const meta: Meta<typeof DataTable> = {
   component: DataTable,
 };
@@ -32,5 +48,6 @@ export const Primary: Story = {
     withChakraProvider(DataTable, {
       caption: "Primary Table",
       headers: columns,
+      rows,
     }),
 };
