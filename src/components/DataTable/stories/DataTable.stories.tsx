@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { withChakraProvider } from "../../../pages/Provider"; // due to some reason, the alias wasn't working, TODO: checkout this issue later
+import { withChakraProvider } from "@/pages/Provider"; // due to some reason, the alias wasn't working, TODO: checkout this issue later
 
 import DataTable from "../index";
 
