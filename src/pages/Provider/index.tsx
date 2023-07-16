@@ -21,8 +21,11 @@ export default function Provider({ children }: { children: React.ReactNode }) {
  * @param {React.ComponentType} Component
  * @returns {React.ComponentType} Component wrapped with Chakra Provider
  */
-export const withChakraProvider = (Component: React.ComponentType) => (
+export const withChakraProvider = (
+  Component: React.ComponentType,
+  props: any
+) => (
   <Provider>
-    <Component />
+    <Component {...props} />
   </Provider>
 );
