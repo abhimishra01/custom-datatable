@@ -4,6 +4,22 @@ import { withChakraProvider } from "../../../pages/Provider"; // due to some rea
 
 import DataTable from "../index";
 
+const columns = [
+  {
+    id: 1,
+    label: "To convert",
+  },
+  {
+    id: 2,
+    label: "into",
+  },
+  {
+    id: 2,
+    label: "Centimeters",
+    isNumeric: true,
+  },
+];
+
 const meta: Meta<typeof DataTable> = {
   component: DataTable,
 };
@@ -12,5 +28,9 @@ export default meta;
 type Story = StoryObj<typeof DataTable>;
 
 export const Primary: Story = {
-  render: () => withChakraProvider(DataTable, { caption: "Primary Table" }),
+  render: () =>
+    withChakraProvider(DataTable, {
+      caption: "Primary Table",
+      headers: columns,
+    }),
 };
