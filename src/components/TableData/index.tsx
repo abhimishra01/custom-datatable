@@ -1,6 +1,8 @@
 import { Td } from "@chakra-ui/react";
 
-const TableData = ({ isNumeric, label }) => (
+import { TableData as TDType } from "@/utils/types";
+
+const TableData = ({ isNumeric, label }: TDType) => (
   <Td isNumeric={isNumeric}>{label}</Td>
 );
 

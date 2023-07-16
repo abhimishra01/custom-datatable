@@ -23,7 +23,7 @@ export default function Provider({ children }: { children: React.ReactNode }) {
  */
 export const withChakraProvider = (
   Component: React.ComponentType,
-  props: any
+  props?: any
 ) => (
   <Provider>
     <Component {...props} />

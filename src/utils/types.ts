@@ -1,17 +1,17 @@
 export interface TableHead {
-  label: string;
+  label: string | number;
   isNumeric?: boolean;
 }
 
 export interface Header extends TableHead {
-  id: string;
+  id: string | number;
 }
 
-export interface TableRow {
-  label: string;
+export interface TableData {
+  label: string | number;
   isNumeric?: boolean;
 }
 
-export interface Row extends TableRow {
-  id: string;
+export interface Row extends TableData {
+  id: string | number;
 }
