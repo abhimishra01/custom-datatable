@@ -1,6 +1,8 @@
 export interface TableHead {
+  id: string | number;
   label: string | number;
   isNumeric?: boolean;
+  onClick?: (...args: any) => void;
 }
 
 export interface Header extends TableHead {

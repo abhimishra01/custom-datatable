@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { isEmpty, startCase } from "lodash";
 import {
   Table,
@@ -19,6 +20,44 @@ export default function DataTable<RowType, HeaderType>({
   headers,
   caption,
 }: DataTableType<RowType, HeaderType>) {
+  const [sortConfig, setSortConfig] = useState<{
+    id: string | null;
+    direction: string;
+  }>({ id: null, direction: "asc" });
+
+  const handleHeaderClick = (id: string) => {
+    let direction = sortConfig.direction;
+
+    if (
+      (sortConfig.id === id || sortConfig.id === null) &&
+      sortConfig.direction === "asc"
+    ) {
+      direction = "desc";
+    }
+
+    if (
+      (sortConfig.id === id || sortConfig.id === null) &&
+      sortConfig.direction === "desc"
+    ) {
+      direction = "asc";
+    }
+
+    setSortConfig({ id, direction });
+
+    const columnLabel = headers[id].label;
+    rows.sort((a, b) => {
+      if (sortConfig.id) {
+        const valueA = a[columnLabel];
+        const valueB = b[columnLabel];
+        return sortConfig.direction === "asc"
+          ? valueA.localeCompare(valueB)
+          : valueB.localeCompare(valueA);
+      }
+
+      return 0;
+    });
+  };
+
   return (
     <TableContainer>
       <Table variant="simple">
@@ -37,8 +76,10 @@ export default function DataTable<RowType, HeaderType>({
                   return (
                     <TableHead
                       key={id}
+                      id={id - 1}
                       isNumeric={isNumeric}
                       label={startCase(label)}
+                      onClick={handleHeaderClick}
                     />
                   );
                 })}

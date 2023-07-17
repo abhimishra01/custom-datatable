@@ -34,16 +34,6 @@ export const columns = [
 
 export const rows: Array<Row> = [
   {
-    id: 1,
-    timestamp: "35 minutes ago",
-    purchaseId: 32907423,
-    name: "XYZ",
-    mail: "test@tryp.com",
-    source: "India",
-    status: "Success",
-    select: "Select",
-  },
-  {
     id: 2,
     timestamp: "22 minutes ago",
     purchaseId: 12131,
@@ -51,6 +41,16 @@ export const rows: Array<Row> = [
     mail: "abc@tryp.com",
     source: "India",
     status: "Failed",
+    select: "Select",
+  },
+  {
+    id: 1,
+    timestamp: "35 minutes ago",
+    purchaseId: 32907423,
+    name: "XYZ",
+    mail: "test@tryp.com",
+    source: "India",
+    status: "Success",
     select: "Select",
   },
 ];
