@@ -16,9 +16,12 @@ const meta: Meta<typeof TableData> = {
 export default meta;
 type Story = StoryObj<typeof TableData>;
 
+const row = rows[0];
+
 export const Basic: Story = {
   render: () =>
     withChakraProvider(WithTableData, {
-      ...rows[0],
+      isNumeric: false,
+      label: row.timestamp,
     }),
 };
