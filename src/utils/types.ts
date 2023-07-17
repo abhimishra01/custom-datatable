@@ -12,6 +12,13 @@ export interface TableData {
   isNumeric?: boolean;
 }
 
-export interface Row extends TableData {
+export interface Row {
   id: string | number;
+  timestamp: string;
+  purchaseId: number;
+  name: string;
+  mail: string;
+  source: string;
+  status: string;
+  select: string;
 }

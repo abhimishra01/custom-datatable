@@ -1,4 +1,4 @@
-import { isEmpty } from "lodash";
+import { isEmpty, startCase } from "lodash";
 import {
   Table,
   Thead,
@@ -10,17 +10,15 @@ import {
 
 import TableHead from "@/components/TableHead";
 import TableData from "@/components/TableData";
-import { Header, Row } from "@/utils/types";
+import { Row } from "@/utils/types";
 
 import DataTableType from "./types";
 
-export default function DataTable({
+export default function DataTable<RowType, HeaderType>({
   rows,
   headers,
   caption,
-  sortable,
-  pagination,
-}: DataTableType) {
+}: DataTableType<RowType, HeaderType>) {
   return (
     <TableContainer>
       <Table variant="simple">
@@ -31,23 +29,43 @@ export default function DataTable({
             {caption && <TableCaption>{caption}</TableCaption>}
             <Thead>
               <Tr>
-                {headers.map((column: Header) => {
+                {headers.map((column: HeaderType) => {
+                  // @ts-expect-error
+                  // TODO: add support for extended dynamic HeaderType which will inform TS this property is ought to be present
                   const { isNumeric, id, label } = column;
+
                   return (
-                    <TableHead key={id} isNumeric={isNumeric} label={label} />
+                    <TableHead
+                      key={id}
+                      isNumeric={isNumeric}
+                      label={startCase(label)}
+                    />
                   );
                 })}
               </Tr>
             </Thead>
             <Tbody>
-              <Tr>
-                {rows.map((row: Row) => {
-                  const { isNumeric, id, label } = row;
-                  return (
-                    <TableData key={id} isNumeric={isNumeric} label={label} />
-                  );
-                })}
-              </Tr>
+              {/* @ts-ignore */}
+              {rows.map((row: Row) => {
+                const { id } = row;
+                return (
+                  <Tr key={id}>
+                    {headers.map((column: HeaderType) => {
+                      // @ts-expect-error
+                      // TODO: add support for extended dynamic HeaderType which will inform TS this property is ought to be present
+                      const { label, id, isNumeric } = column;
+                      return (
+                        <TableData
+                          key={id}
+                          isNumeric={isNumeric}
+                          // @ts-ignore
+                          label={row[label]}
+                        />
+                      );
+                    })}
+                  </Tr>
+                );
+              })}
             </Tbody>
           </>
         )}

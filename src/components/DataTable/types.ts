@@ -1,8 +1,6 @@
-import { Header, Row } from "@/utils/types";
-
-export default interface DataTableType {
-  rows: Array<Row>;
-  headers: Array<Header>;
+export default interface DataTableType<RowType, HeaderType> {
+  rows: RowType[];
+  headers: HeaderType[];
   caption?: string;
   sortable?: boolean;
   pagination?: boolean;
